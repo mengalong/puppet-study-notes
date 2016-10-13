@@ -4,3 +4,6 @@ How to install puppet
 1. 操作系统：CentOS Linux release 7.2.1511 (Core)
 2. 虚拟机：VirtualBox
 3. Puppet：4.7
+
+# 2. 安装ruby
+<pre><code>yum install ruby</code></pre>
