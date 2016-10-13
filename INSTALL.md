@@ -18,5 +18,32 @@ cd /etc/yum.repos.d/ && wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
 3. 更新：yum clean && yum makecache
 4. 将puppet加入源：
 sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-
+</code></pre>
 ## 3.2 安装
+1. yum install puppetserver
+2. 这里可能yum下载速度太慢，我是直接下载下来puppet-agent和puppet server的rpm包自己装，具体的下载链接可以在执行yum安装的时候看到
+3. puppet有agent机器和server机器，两个上边都可以同时安装puppet-agent和puppetserver
+
+## 3.3 配置：
+1. 机器名修改，我这里使用的是centos7，其中具体的机器和ip如下：
+<pre><code>
+	-server机器：
+            - IP: 192.168.1.103
+            - 机器名：along-server
+            - 修改方法：hostnamectl --static set-hostname ‘along-server'
+        - agent机器：
+            - IP: 192.168.1.104
+            - 机器名：along-client
+            - 修改方法：hostnamectl --static set-hostname ‘along-client'
+</code></pre>
+2. 配置修改
+<pre><code>
+        - 修改server机器的:/etc/puppetlabs/puppet/puppet.conf
+            - 在master字段下增加一项配置：certname = along-server  #指明本机的cert名字为along-server
+        - 修改client机器的：/etc/puppetlabs/puppet/puppet.conf
+            - 增加如下配置：
+                - [agent]
+                - server = along-server      #指明server机器名,未来client机器将会和这个机器建立连接
+                - certname = along-client   #指明本机的cert名字为along-client
+</code></pre>
+
