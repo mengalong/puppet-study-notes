@@ -47,3 +47,8 @@ sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
                 - certname = along-client   #指明本机的cert名字为along-client
 </code></pre>
 
+# 4. 启动puppet服务，在server和client机器上分别执行：service puppet start
+<pre><code>启动之后，可以用puppet status 来查看服务运行状态</code></pre>
+
+# 5. 在puppetserver的就上执行puppet cert sign <NAME>，授权client机器的链接
+# 6. 可以执行 puppet cert list 来查看已经注册上的agent
