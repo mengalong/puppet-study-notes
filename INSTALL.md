@@ -49,6 +49,10 @@ sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 
 # 4. 启动puppet服务，在server和client机器上分别执行：service puppet start
 <pre><code>启动之后，可以用puppet status 来查看服务运行状态</code></pre>
+<pre><code>
+1. 启动master可以使用：puppet master --no-daemonize --debug --trace
+2. 启动agent可以使用：puppet agent --no-daemonize --debug --trace
+</code></pre>
 
 # 5. 在puppetserver的就上执行puppet cert sign <NAME>，授权client机器的链接
 # 6. 可以执行 puppet cert list 来查看已经注册上的agent
